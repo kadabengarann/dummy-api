@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const server = jsonServer.create()
 const router = jsonServer.router('./database.json')
-const userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
+let userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
 
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
@@ -27,7 +27,13 @@ function verifyToken(token){
 
 // Check if the user exists in database
 function isAuthenticated({email, password}){
+  userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
   return userdb.users.findIndex(user => user.email === email && user.password === password) !== -1
+}
+// Check if the email exists in database
+function isEmailExist({email}){
+  userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
+  return userdb.users.findIndex(user => user.email === email) !== -1
 }
 // / route
 server.get('/hello', (req, res) => {
@@ -39,9 +45,9 @@ server.post('/auth/register', (req, res) => {
   console.log(req.body);
   const {email, password} = req.body;
 
-  if(isAuthenticated({email, password}) === true) {
+  if(isEmailExist({email}) === true) {
     const status = 401;
-    const message = 'Email and Password already exist';
+    const message = 'Email already exist';
     res.status(status).json({status, message});
     return
   }
@@ -121,6 +127,6 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
 
 server.use(router)
 
-server.listen(8000, () => {
+server.listen(process.env.PORT || 3001, () => {
   console.log('Run Auth API Server')
 })
