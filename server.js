@@ -39,6 +39,21 @@ function isEmailExist({email}){
 server.get('/hello', (req, res) => {
   res.json({msg: 'Hello'})
 })
+
+// / route
+server.get('/activity', (req, res) => {
+
+  //show json file
+  fs.readFile("./activity.json", (err, data) => {
+    if (err) {
+      const status = 401
+      const message = err
+      res.status(status).json({status, message})
+      return
+    };
+    res.status(200).json(JSON.parse(data.toString()));
+  });
+})
 // Register New User
 server.post('/auth/register', (req, res) => {
   console.log("register endpoint called; request body:");
