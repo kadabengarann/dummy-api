@@ -40,7 +40,8 @@ server.get('/hello', (req, res) => {
   res.json({msg: 'Hello'})
 })
 
-// / route
+
+// / route  /activity
 server.get('/activity', (req, res) => {
 
   //show json file
@@ -83,7 +84,7 @@ fs.readFile("./users.json", (err, data) => {
 
     //Add new user
     data.users.push({id: last_item_id + 1, email: email, password: password}); //add some data
-    var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
+    var writeData = fs.writeFileSync("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
         if (err) {
           const status = 401
           const message = err
