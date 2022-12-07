@@ -83,7 +83,9 @@ fs.readFile("./users.json", (err, data) => {
     var last_item_id = data.users[data.users.length-1].id;
 
     //Add new user
-    data.users.push({id: last_item_id + 1, email: email, password: password}); //add some data
+    data.users.push({id: last_item_id + 1, email: email, 
+      level: "customer",
+      password: password}); //add some data
     var writeData = fs.writeFileSync("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
         if (err) {
           const status = 401
@@ -96,8 +98,9 @@ fs.readFile("./users.json", (err, data) => {
 
 // Create token for new user
   const access_token = createToken({email, password})
+  const level_access = "customer"
   console.log("Access Token:" + access_token);
-  res.status(200).json({access_token})
+  res.status(200).json({access_token, level_access})
 })
 
 // Login to one of the users from ./users.json
@@ -111,9 +114,11 @@ server.post('/auth/login', (req, res) => {
     res.status(status).json({status, message})
     return
   }
+  const user = userdb.users.find(user => user.email === email && user.password === password)
   const access_token = createToken({email, password})
+  const level_access = user.level
   console.log("Access Token:" + access_token);
-  res.status(200).json({access_token})
+  res.status(200).json({access_token, level_access})
 })
 
 server.use(/^(?!\/auth).*$/,  (req, res, next) => {
