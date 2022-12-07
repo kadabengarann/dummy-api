@@ -116,6 +116,9 @@ server.post('/auth/login', (req, res) => {
   }
   const user = userdb.users.find(user => user.email === email && user.password === password)
   const access_token = createToken({email, password})
+  if (user.level === undefined) {
+    user.level = "customer"
+  }
   const level_access = user.level
   console.log("Access Token:" + access_token);
   res.status(200).json({access_token, level_access})
