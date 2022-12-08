@@ -27,6 +27,8 @@
       "id": "1",
       "image": "https://picsum.photos/200/300"
     },
+    "meeting_id": "72424439202",
+    "meeting_password": "123456",
     "created_at": "2022-10-11T00:00:00Z",
     "status": "0"
   },
@@ -75,18 +77,18 @@
     "created_at": "2022-10-11T00:00:00Z",
     "status": "2"
   },
-    {
-        "id": "6",
-      "title": "Konsultasi Karir",
-      "category": "UI/UX Design",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam tincidunt, nunc elit aliquam lorem, eget aliquam nisl nunc vel lorem. Sed euismod, nunc ut aliquam tincidunt, nunc elit aliquam lorem, eget aliquam nisl nunc vel lorem.",
-      "date": "2022-10-11T05:00:00Z",
-      "time_start": "2022-10-11T05:00:00Z",
-      "time_end": "2022-10-11T05:20:00Z",
-      "price": 20000,
-      "confirmation_status": "rejected",
-      "narasumber": null,
-        "created_at": "2022-10-11T00:00:00Z",
-        "status": "2"
-    }
+  {
+    "id": "6",
+    "title": "Konsultasi Karir",
+    "category": "UI/UX Design",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam tincidunt, nunc elit aliquam lorem, eget aliquam nisl nunc vel lorem. Sed euismod, nunc ut aliquam tincidunt, nunc elit aliquam lorem, eget aliquam nisl nunc vel lorem.",
+    "date": "2022-10-11T05:00:00Z",
+    "time_start": "2022-10-11T05:00:00Z",
+    "time_end": "2022-10-11T05:20:00Z",
+    "price": 20000,
+    "confirmation_status": "rejected",
+    "narasumber": null,
+    "created_at": "2022-10-11T00:00:00Z",
+    "status": "2"
+  }
 ]

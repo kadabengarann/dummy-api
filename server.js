@@ -44,6 +44,9 @@ server.get('/hello', (req, res) => {
 // / route  /activity
 server.get('/activity', (req, res) => {
 
+  const query = req.query
+  const filter = query.status
+
   //show json file
   fs.readFile("./activity.json", (err, data) => {
     if (err) {
@@ -52,7 +55,11 @@ server.get('/activity', (req, res) => {
       res.status(status).json({status, message})
       return
     };
-    res.status(200).json(JSON.parse(data.toString()));
+    data = JSON.parse(data.toString());
+    if (filter !== undefined) {
+      data = data.filter(item => item.status === filter)
+    }
+    res.status(200).json(data);
   });
 })
 // Register New User
