@@ -84,6 +84,26 @@ server.get('/activity/:id', (req, res) => {
   });
 })
 
+// get /notification
+server.get('/notification', (req, res) => {
+  const query = req.query
+  let isRead = query.isRead
+  isRead = isRead === "true" ? true : isRead === "false" ? false : undefined
+  console.log(isRead);
+  fs.readFile("./notification.json", (err, data) => {
+    if (err) {
+      const status = 401
+      const message = err
+      res.status(status).json({status, message})
+      return
+    };
+    data = JSON.parse(data.toString());
+    if (isRead !== undefined) {
+      data = data.filter(item => item.read == isRead)
+    }
+    res.status(200).json(data);
+  });
+})
 
 
 // Register New User

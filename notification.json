@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "user_id": 1,
+    "title": "Tawaran Masuk",
+    "body": "Customer mengajukan permintaan wawancara.",
+    "destination_id": 1,
+    "user_type": "narasumber",
+    "created_at": "2017-01-01T00:00:00.000Z",
+    "read": false
+  },
+  {
+    "id": 2,
+    "user_id": 1,
+    "title": "Penelitian Prospek Karir",
+    "body": "Selamat, Narasumber menerima tawaran.",
+    "destination_id": 2,
+    "user_type": "customer",
+    "created_at": "2017-01-01T00:00:00.000Z",
+    "read": true
+  },
+  {
+    "id": 3,
+    "user_id": 1,
+    "title": "Selamat Datang",
+    "body": "Kamu telah terdaftar pada NaraSource.",
+    "destination_id": null,
+    "user_type": "customer",
+    "created_at": "2017-01-01T00:00:00.000Z",
+    "read": false
+  }
+]
