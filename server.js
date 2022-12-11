@@ -62,6 +62,30 @@ server.get('/activity', (req, res) => {
     res.status(200).json(data);
   });
 })
+
+
+// get /activity/:id
+server.get('/activity/:id', (req, res) => {
+  const id = req.params.id
+  fs.readFile("./activity.json", (err, data) => {
+    if (err) {
+      const status = 401
+      const message = err
+      res.status(status).json({status, message})
+      return
+    };
+    data = JSON.parse(data.toString());
+    data = data.filter(item => item.id == id)
+    if (data.length > 0) {
+      res.status(200).json(data[0]);
+    } else {
+      res.status(404).json({msg: "Not found"});
+    }
+  });
+})
+
+
+
 // Register New User
 server.post('/auth/register', (req, res) => {
   console.log("register endpoint called; request body:");
