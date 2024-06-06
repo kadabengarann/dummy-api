@@ -40,6 +40,37 @@ server.get('/hello', (req, res) => {
   res.json({msg: 'Hello'})
 })
 
+server.get('/chat', (req, res) => {
+  const htmlResponse = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Hello Page</title>
+    </head>
+    <body>
+      <h1>Hello</h1>
+      <p>This is a Hello page.</p>
+      <script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '665e720ecb0595c84a209209' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production'
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
+    </body>
+    </html>
+  `;
+  res.send(htmlResponse);
+})
+
 
 // / route  /activity
 server.get('/activity', (req, res) => {
